@@ -1,7 +1,10 @@
 
 #include <iostream>
+#include <stdlib.h>
 #include <string>
 #include "Models/Item.cpp"
+#include "Collections/Lists.cpp"
+
 using namespace std;
 
 void printHelp() {
@@ -12,9 +15,7 @@ void printHelp() {
 }
 
 int main( int argc, char** argv ) {
-  Item::ItemHandle ih = Item::ItemHandle();
-
-  cout << ih.to_string() << endl;
-
-  return 0;
+  Collections::List<string>* h = new Collections::List<string>();
+  h->push("Hello world!");
+  cout << h->at(0) << endl;
 }
