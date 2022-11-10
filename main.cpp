@@ -15,7 +15,9 @@ void printHelp() {
 }
 
 int main( int argc, char** argv ) {
-  Collections::List<string>* h = new Collections::List<string>();
-  h->push("Hello world!");
-  cout << h->at(0) << endl;
+  Collections::List<string> h = Collections::List<string>();
+  h.push("h");
+  cout << h.at(0) << endl;
+  h.remove(0);
+
 }

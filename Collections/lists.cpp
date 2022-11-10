@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 
 namespace Collections
 {
@@ -35,11 +36,10 @@ namespace Collections
     }
 
     T at( int idx ) {
-      try {
-        return this->arr[idx];
-      } catch (std::string msg) {
+      if ( idx > this->Count-1 ) {
         throw ("Index: "+std::to_string(idx)+" is out of bounds");
       }
+      return this->arr[idx];
     }
 
     T pop() {
@@ -84,13 +84,14 @@ namespace Collections
 
     void remove( int idx ) {
       try {
-        this.arr[idx] = nullptr;
+        this->arr[idx] = nullptr;
 
         for ( int i = idx+1; i < this->Count; i++ ) {
           this->arr[i-1] = this->arr[i];
         }
 
         this->arr[this->Count-1] = nullptr;
+        this->Count--;
 
         if ( this->Count <= this->Capacity ) {
           resizeDown();
@@ -106,12 +107,8 @@ namespace Collections
     }
 
     ~List() {
-      for ( T item : this->arr ) {
-        item.~T();
-      }
-      free(this->arr);
+      this->arr = nullptr;
     }
-
   };
 
 } // namespace Collections
